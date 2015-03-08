@@ -1,0 +1,33 @@
+{
+    "name": "StreamSql",
+    "version": "0.0.1",
+    "description": "A node stream-based API for communicating with Microsoft SQL Server (uses Tedious)",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/randolpho/StreamSql.git"
+    },
+    "keywords": [
+        "stream",
+        "sql",
+        "microsoft",
+        "tedious",
+        "api"
+    ],
+    "dependencies": {
+        "tedious" : ">=1.10.0"
+    },
+    "devDependencies" : {
+        "nodeunit-dataprovider" : "*",
+        "nodeunit" : "*"
+    },
+    "author": "Randolpho St. John",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/randolpho/StreamSql/issues"
+    },
+    "homepage": "https://github.com/randolpho/StreamSql"
+}

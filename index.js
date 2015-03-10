@@ -61,6 +61,10 @@ exports.createRequest = function createRequest(query) {
     return new StreamSqlRequest(query);
 };
 
+// funny thing about util.inherits -- you have to call it *before*
+// you define any prototype overrides.
+util.inherits(StreamSqlResponseStream, stream.Readable);
+
 function StreamSqlResponseStream(options) {
     this._executing = false;
     stream.Readable.call(this, options);
@@ -70,14 +74,13 @@ StreamSqlResponseStream.prototype.ExecuteQuery = function() {
     // deliberately left blank; intended to be overridden
 };
 
-StreamSqlResponseStream.prototype._read = function() {
+StreamSqlResponseStream.prototype._read = function _read() {
     if(!this._executing) {
         this._executing = true;
         this.ExecuteQuery();
     }
 };
 
-util.inherits(StreamSqlResponseStream, stream.Readable);
 
 function StreamSqlRequest(query) {
     var connectionConfig = null;
@@ -85,8 +88,8 @@ function StreamSqlRequest(query) {
     var tdsConnection = null;
     var tdsRequest = new tds.Request(query, TdsRequestComplete);
 
-
     tdsRequest.on("row", TdsRow);
+
     responseStream.ExecuteQuery = StartExecution;
 
     function TdsRequestComplete(err, rowCount) {
@@ -117,7 +120,13 @@ function StreamSqlRequest(query) {
 
     }
 
-    var tdsRequest = new tds.Request(query, TdsRequestComplete);
+    this.addParameter = function StreamSqlRequest_addParameter(name, type, value, options) {
+        tdsRequest.addParameter(name, type, value, options);
+    };
+
+    this.addOutParameter = function StreamSqlRequest_addOutParameter(name, type, value, options) {
+        tdsRequest.addOutputParameter(name, type, value, options);
+    };
 
     this.execute = function StreamSqlRequest_execute(connectionName) {
         CheckConfigured();

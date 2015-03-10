@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$/config-util.js" libraries="{Node.js Globals}" />
     <file url="file://$PROJECT_DIR$/index.js" libraries="{Node.js Globals}" />
     <file url="file://$PROJECT_DIR$/test/config-util-test.js" libraries="{Node.js Globals}" />
     <file url="file://$PROJECT_DIR$/test/index-test.js" libraries="{Node.js Globals}" />
+    <includedPredefinedLibrary name="Node.js Globals" />
   </component>
 </project>
 

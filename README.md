@@ -5,8 +5,7 @@ A node.js stream-based API for communicating with Microsoft SQL Server
 
 Stream-sql is a node package with a simple goal: provide a stream-based and easier to use API for 
 [Tedious](http://github.com/pekim/tedious). Stream-sql transforms the result sets read from Tedious into a node object 
-stream, enabling a functional approach to your noding when dealing with Microsoft SQL Server on the backend. Each 
-field of a row object received has the same name as the column name of the result set, with 
+stream, enabling a functional approach to your noding when dealing with Microsoft SQL Server on the backend. 
  
 **NOTE:** Stream-sql does not support fully buffering all rows in the result set into memory. If you want your 
 result-set as an array, either buffer it yourself or use Tedious directly. 

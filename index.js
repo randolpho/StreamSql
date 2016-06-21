@@ -102,9 +102,15 @@ function StreamSqlRequest(query) {
 
     function TdsRow(columns) {
         var rowObj = {};
-        columns.forEach(function(column) {
-            rowObj[column.metadata.colName] = column.value;
-        });
+        if (columns.length == 1 &&
+                (columns[0].metadata.colName == "JSON_F52E2B61-18A1-11d1-B105-00805F49916B" 
+                || columns[0].metadata.colName == "XML_F52E2B61-18A1-11d1-B105-00805F49916B")) {
+            rowObj = columns[0].value;
+        } else {
+            columns.forEach(function (column) {
+                rowObj[column.metadata.colName] = column.value;
+            });
+        }
         responseStream.push(rowObj);
     }
 

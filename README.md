@@ -27,7 +27,7 @@ to standard out. It uses JSONStream to transform the objects into JSON on the fl
     var config = {
         connections : {
             "default" : {
-                server  : "localhost"
+                server  : "localhost",
                 userName: "user",
                 password: "pass"
             }
